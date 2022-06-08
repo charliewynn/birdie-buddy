@@ -1,7 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useState } from "react";
+import { Post } from "./services/network";
 
 function App() {
+  const [info, setInfo] = useState("Click 'test api' to test a response");
+  const testApi = async () => {
+    console.log("Testing api");
+    setInfo("testing...");
+    try {
+      const resp = await Post("authentication", "Login");
+      console.log("resp", resp);
+      setInfo(resp.message);
+    } catch (error) {
+      setInfo("Failed: " + error);
+    }
+  };
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +32,8 @@ function App() {
           Learn React
         </a>
       </header>
+      <button onClick={() => testApi()}>test api</button>
+      <div>{info}</div>
     </div>
   );
 }
