@@ -14,10 +14,18 @@ exports.Post = async (route, action, data) => {
     fetchOptions.headers = { "Content-Type": "application/json" };
   }
 
-  const result = await fetch(postUrl, fetchOptions);
-  if (result.status === 200) {
-    const json = await result.json();
-    return json;
+  try {
+    const result = await fetch(postUrl, fetchOptions);
+    if (result.ok) {
+      const json = await result.json();
+      return json;
+    }
+    console.warn("Got unsuccessful status code", result.status);
+    return result;
+  } catch (error) {
+    console.log("Could not post request", error);
+    if (error.message === "Failed to fetch" && isDev()) {
+      alert("Did you start the dev server?");
+    }
   }
-  return result;
 };
