@@ -4,7 +4,7 @@ const postUrl = isDev()
   ? "http://localhost:3057/"
   : "https://1bttknktni.execute-api.us-east-2.amazonaws.com/default/birdie-buddy";
 
-exports.Post = async (route, action, data) => {
+export const Post = async (route, action, data) => {
   console.log("Doing Post", route, action);
 
   const postBody = JSON.stringify({ route: route, action: action, data: data });
