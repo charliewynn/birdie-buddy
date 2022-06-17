@@ -4,26 +4,27 @@ import { useState } from "react";
 import { Post } from "./services/network";
 import SignUpRoute from "./Routes/Authentication/SignUpRoute";
 import ApiTestRoute from "./Routes/Test/ApiTestRoute";
+import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <div className="content">
-        <ApiTestRoute />
-        <SignUpRoute />
-      </div>
+      <Router basename="/birdie-buddy">
+        <header className="App-header">
+          <Link to="/">
+            <img src={logo} className="App-logo" alt="logo" />
+          </Link>
+          <Link className="App-link" to="/signup">
+            Sign Up
+          </Link>
+        </header>
+        <div className="content">
+          <Routes>
+            <Route exact path="/" element={<ApiTestRoute />} />
+            <Route path="signup" element={<SignUpRoute />} />
+          </Routes>
+        </div>
+      </Router>
     </div>
   );
 }

@@ -1,4 +1,3 @@
-//import "./SignUp.css";
 import { useState } from "react";
 import * as Authentication from "../../services/Authentication";
 import SignUp from "../../Components/Authentication/SignUp";
@@ -20,7 +19,7 @@ function SignUpRoute() {
     }
   };
   return (
-    <div className="SignUp">
+    <div className="SignUpRoute">
       <SignUp doCreateUser={createUser} />
     </div>
   );
