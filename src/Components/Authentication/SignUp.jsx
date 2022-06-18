@@ -5,6 +5,7 @@ function SignUp({ doCreateUser }) {
   const [username, setUsername] = useState("bb_testing");
   const [password, setPassword] = useState("TestingPassword123!@#");
   const [email, setEmail] = useState("bb_test@cwynn.com");
+
   const createUser = async () => {
     // TODO - validate these entries
     doCreateUser(username, password, email);

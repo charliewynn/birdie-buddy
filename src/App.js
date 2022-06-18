@@ -1,12 +1,17 @@
 import logo from "./logo.svg";
 import "./styles/App.scss";
-import { useState } from "react";
-import { Post } from "./services/network";
 import SignUpRoute from "./Routes/Authentication/SignUpRoute";
 import ApiTestRoute from "./Routes/Test/ApiTestRoute";
 import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
 
+import { useSelector, useDispatch } from "react-redux";
+import { setUser, logUserOut } from "./Redux/AuthSlice";
+
 function App() {
+  const user = useSelector((state) => {
+    return state.authReducer.user;
+  });
+  const dispatch = useDispatch();
   return (
     <div className="App">
       <Router basename="/birdie-buddy">
@@ -17,6 +22,15 @@ function App() {
           <Link className="App-link" to="/signup">
             Sign Up
           </Link>
+          {user && (
+            <button
+              onClick={() => {
+                dispatch(logUserOut());
+              }}
+            >
+              clearUser
+            </button>
+          )}
         </header>
         <div className="content">
           <Routes>
