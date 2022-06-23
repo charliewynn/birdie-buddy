@@ -5,7 +5,7 @@ import ApiTestRoute from "./Routes/Test/ApiTestRoute";
 import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setUser, logUserOut } from "./Redux/AuthSlice";
+import { logUserOut } from "./Redux/AuthSlice";
 
 function App() {
   const user = useSelector((state) => {
